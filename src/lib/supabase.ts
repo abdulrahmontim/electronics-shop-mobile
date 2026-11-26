@@ -11,7 +11,7 @@ const anonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
  */
 export const configurationError =
   !url || !anonKey
-    ? 'Bench Supply is not configured yet. Copy mobile/.env.example to mobile/.env, add EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY, then restart the app.'
+    ? 'Bench Supply is not configured yet. Copy .env.example to .env, add EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY, then restart the app.'
     : null;
 
 let client: SupabaseClient | null = null;

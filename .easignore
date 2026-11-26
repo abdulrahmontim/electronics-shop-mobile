@@ -6,9 +6,6 @@
 .env
 .env.*
 !.env.example
-mobile/.env
-mobile/.env.*
-!mobile/.env.example
 
 # Signing material.
 *.jks
