@@ -14,8 +14,9 @@ confirmation email run.
 Two things must be done outside this repository before the app can show data:
 
 1. Run `supabase/schema.sql`, `supabase/seed.sql` and `supabase/cart.sql` from the
-   web repository in the Supabase SQL editor. `cart.sql` creates the `cart_items`
-   table that makes the cart shared between web and mobile.
+   [web repository](https://github.com/abdulrahmontim/electronics-shop) in the
+   Supabase SQL editor. `cart.sql` creates the `cart_items` table that makes the
+   cart shared between web and mobile.
 2. Add the redirect URLs listed below to Supabase Auth (Authentication > URL
    Configuration > Redirect URLs).
 
