@@ -120,6 +120,14 @@ and a development build or APK. Expo Go cannot complete the flow, because it doe
 not register the `benchsupply://` scheme; the app detects this and says so instead
 of failing silently.
 
+## Network transport security
+
+The app requires HTTPS for the Supabase and shop API URLs, ignores product image
+URLs that use HTTP, and disables cleartext network traffic in Android builds.
+This helps prevent network interception from exposing sign-in sessions or
+checkout details over an unencrypted connection. Keep the configured services
+and any image hosts available over HTTPS.
+
 ## Build an APK
 
 The app is a normal Expo project, so either EAS or a local build works.

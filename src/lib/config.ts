@@ -8,12 +8,22 @@ export function isCategory(value: string | null | undefined): value is Category 
   return !!value && (CATEGORIES as readonly string[]).includes(value);
 }
 
+export function isHttpsUrl(value: string): boolean {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && !!url.hostname;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * The deployed web app. It serves the product images from /products/* and owns
  * the only checkout endpoint, which is where place_order and Mailgun run. There
  * is deliberately no localhost default: a phone cannot reach the dev machine.
  */
-export const WEB_BASE_URL = (process.env.EXPO_PUBLIC_API_URL ?? '').replace(/\/+$/, '');
+const configuredWebBaseUrl = (process.env.EXPO_PUBLIC_API_URL ?? '').trim().replace(/\/+$/, '');
+export const WEB_BASE_URL = isHttpsUrl(configuredWebBaseUrl) ? configuredWebBaseUrl : '';
 
 /** The single place where orders are created. The phone never calls Supabase to place one. */
 export const CHECKOUT_URL = WEB_BASE_URL ? `${WEB_BASE_URL}/api/checkout` : '';
@@ -26,7 +36,7 @@ export const MAX_SELECTABLE = 10;
 
 export function resolveImageUrl(imageUrl: string | null | undefined): string | null {
   if (!imageUrl) return null;
-  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
+  if (isHttpsUrl(imageUrl)) return imageUrl;
   if (imageUrl.startsWith('/') && WEB_BASE_URL) return `${WEB_BASE_URL}${imageUrl}`;
   return null;
 }
