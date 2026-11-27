@@ -16,6 +16,7 @@
     "android": {
       "package": "com.benchsupply.app",
       "edgeToEdgeEnabled": true,
+      "usesCleartextTraffic": false,
       "adaptiveIcon": {
         "backgroundColor": "#F4F5F1",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
